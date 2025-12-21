@@ -1,0 +1,8 @@
+{
+    "employee": {
+        "Id": 1,
+        "name": "Imran",
+        "course":"Full stack",
+        "skills": ["HTML","CSS","JS"]
+    }
+}
