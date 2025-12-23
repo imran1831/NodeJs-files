@@ -8,10 +8,10 @@
 
 
 // ----Query String----
-// const querystring=require('querystring');
-// const qs='category=books&price=500';
-// const parsedData=querystring.parse(qs);
-// console.log(parsedData);
+const querystring=require('querystring');
+const qs='category=books&price=500';
+const parsedData=querystring.parse(qs);
+console.log(parsedData);
 
 const querystring=require('querystring');
 const obj={
