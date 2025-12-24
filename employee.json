@@ -1,8 +1,7 @@
 {
-    "employee": {
-        "Id": 1,
-        "name": "Imran",
-        "course":"Full stack",
-        "skills": ["HTML","CSS","JS"]
-    }
+  "id": 101,
+  "name": "nikhitha",
+  "age": 28,
+  "branch": "cse",
+  "college": "MRDU"
 }
