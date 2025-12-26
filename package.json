@@ -1,9 +1,18 @@
 {
+<<<<<<< HEAD
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "httpmethod.js",
   "scripts": {
+=======
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node FileSystem.js",
+>>>>>>> 575d131e1878edab15e43c29e2daee812e3ef6ba
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +21,12 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
+<<<<<<< HEAD
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
+=======
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.21"
+>>>>>>> 575d131e1878edab15e43c29e2daee812e3ef6ba
   }
 }
