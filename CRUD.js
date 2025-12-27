@@ -4,6 +4,7 @@ const sqlite3 = require("sqlite3");
 const app = express();
 app.use(express.json());
 const path = require("path");
+const bcrypt = require("bcrypt");
 const dbPath = path.join(__dirname, "goodreads.db");
 let db = null;
 const initializeDBAndServer = async () => {
@@ -74,3 +75,41 @@ VALUES
     const bookId = dbResponse.lastID;
     res.send({ bookId: bookId });
 });
+// Create User API
+// Create User API
+app.post("/users/", async (req, res) => {
+    try {
+        const { username, name, password, gender, location } = req.body;
+
+        // hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // check if username already exists
+        const selectUserQuery = `
+      SELECT * FROM user WHERE username='${username}';
+    `;
+        const dbUser = await db.get(selectUserQuery);
+
+        if (dbUser === undefined) {
+            const createUserQuery = `
+        INSERT INTO user (username, name, password, gender, location)
+        VALUES (
+        '${username}',
+        '${name}',
+        '${hashedPassword}',
+        '${gender}',
+        '${location}'
+        );
+    `;
+            await db.run(createUserQuery);
+            res.send("User created successfully");
+        } else {
+            res.status(400);
+            res.send("Username already exist");
+        }
+    } catch (error) {
+        console.log("Error:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+

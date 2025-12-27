@@ -17,3 +17,15 @@ Content-Type: application/json
     "price": 850,
     "onlineStores": "Amazon, Audible, Indigo, Apple Books, Google Play, IndieBound"
 }
+
+#####
+POST http://localhost:3000/users/
+Content-Type: application/json
+
+{
+    "username": "imran",
+    "name": "Abdul Imran",
+    "password": "123456",
+    "gender": "male",
+    "location": "India"
+}
