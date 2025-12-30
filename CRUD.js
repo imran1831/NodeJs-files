@@ -113,3 +113,27 @@ app.post("/users/", async (req, res) => {
     }
 });
 
+// Login API
+app.post("/login/",async (req,res)=>{
+    const {username,password}=req.body;
+    const selectUserQuery = `
+      SELECT * FROM user WHERE username='${username}';
+    `;
+        const dbUser = await db.get(selectUserQuery);
+
+        if (dbUser === undefined) {
+            res.status(404);
+            res.send("Invalid User");
+        }
+        else {
+            const isPasswordMatched=await bcrypt.compare(password,dbUser.password)
+            if(isPasswordMatched===true){
+                res.send("Login successful");
+            }
+            else{
+                res.status(404);
+                res.send("Invalid Password");
+            }
+        }
+})
+
