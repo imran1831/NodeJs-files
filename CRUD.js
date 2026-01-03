@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 const path = require("path");
 const bcrypt = require("bcrypt");
+const jwt=require("jsonwebtoken");
 const dbPath = path.join(__dirname, "goodreads.db");
 let db = null;
 const initializeDBAndServer = async () => {
@@ -128,7 +129,9 @@ app.post("/login/",async (req,res)=>{
         else {
             const isPasswordMatched=await bcrypt.compare(password,dbUser.password)
             if(isPasswordMatched===true){
-                res.send("Login successful");
+                const payload={username:username};
+                const jwtToken=jwt.sign(payload,"tcjytcurkt");
+                res.send({jwtToken});
             }
             else{
                 res.status(404);
