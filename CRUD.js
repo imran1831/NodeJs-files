@@ -23,7 +23,7 @@ const initializeDBAndServer = async () => {
 };
 initializeDBAndServer();
 
-app.get('/books/', async (req, res) => {
+const authenticateToken=(req,res,next)=>{
     let jwtToken;
     const authHeader = req.headers["authorization"];
     if (authHeader !== undefined) {
@@ -40,7 +40,14 @@ app.get('/books/', async (req, res) => {
                 res.send("Invalid Access Token");
             }
             else {
-                const getBooksQuery = `
+                next();
+            }
+        })
+    }
+}
+// Get Books API
+app.get('/books/',authenticateToken, async (req, res) => {
+    const getBooksQuery = `
                 SELECT
                  *
                 FROM
@@ -50,9 +57,7 @@ app.get('/books/', async (req, res) => {
                 book_id;`;
                 const booksArray = await db.all(getBooksQuery);
                 res.send(booksArray);
-            }
-        })
-    }
+    
 
 });
 
