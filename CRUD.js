@@ -40,11 +40,20 @@ const authenticateToken=(req,res,next)=>{
                 res.send("Invalid Access Token");
             }
             else {
+                req.username=payload.username;
                 next();
             }
         })
     }
 }
+// get Profile Detials
+app.get('/profile',authenticateToken,async(req,res)=>{
+    const {username}=req;
+    console.log(username);
+    const selectedQuery=`SELECT * FROM user WHERE username='${username}';`;
+    const dbUser=await db.get(selectedQuery);
+    res.send(dbUser);
+})
 // Get Books API
 app.get('/books/',authenticateToken, async (req, res) => {
     const getBooksQuery = `
