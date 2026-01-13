@@ -68,7 +68,7 @@ function getAge(age,callback){
         }
     },1000);
 }
-getAge(22,(err,res)=>{
+getAge(23,(err,res)=>{
     if(err){
         console.log("ERR:",err)
     }
