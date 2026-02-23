@@ -110,7 +110,6 @@ VALUES
     res.send({ bookId: bookId });
 });
 // Create User API
-// Create User API
 app.post("/users/", async (req, res) => {
     try {
         const { username, name, password, gender, location } = req.body;
@@ -123,7 +122,6 @@ app.post("/users/", async (req, res) => {
       SELECT * FROM user WHERE username='${username}';
     `;
         const dbUser = await db.get(selectUserQuery);
-
         if (dbUser === undefined) {
             const createUserQuery = `
         INSERT INTO user (username, name, password, gender, location)
