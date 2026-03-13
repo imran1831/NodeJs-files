@@ -104,7 +104,6 @@ VALUES
     '${onlineStores}'
 );
 `;
-
     const dbResponse = await db.run(addBookQuery);
     const bookId = dbResponse.lastID;
     res.send({ bookId: bookId });

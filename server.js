@@ -7,10 +7,8 @@ http.createServer((req, res) => {
             branch:"IT",
             college:"MRDU"
     };
-
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(data));
-
 }).listen(4000, () => {
     console.log("Server started at http://localhost:4000");
 });
