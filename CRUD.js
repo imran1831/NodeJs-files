@@ -69,7 +69,6 @@ app.get('/books/',authenticateToken, async (req, res) => {
     
 
 });
-
 // Add Book API
 app.post("/books/", async (req, res) => {
     const bookDetails = req.body;
